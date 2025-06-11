@@ -8,8 +8,6 @@ This project demonstrates a complete gRPC service architecture featuring:
 
 - **C++ Server**: High-performance server implementation with thread-safe operations
 - **Python Client**: Comprehensive client with full API coverage and demo functionality
-- **Rich Service Interface**: 10 different RPC methods including streaming
-- **Production Ready**: Proper error handling, logging, and graceful shutdown
 
 ## 📁 Project Structure
 
