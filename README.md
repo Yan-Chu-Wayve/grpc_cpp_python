@@ -35,7 +35,6 @@ grpc_cpp_python/
 - **CMake** (3.10 or higher)
 - **gRPC** and **Protocol Buffers**
 - **C++17** compatible compiler
-- **pkg-config**
 
 ### For Python Client
 - **Python** 3.7 or higher
