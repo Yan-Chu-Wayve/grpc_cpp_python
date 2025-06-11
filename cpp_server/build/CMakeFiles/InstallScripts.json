@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/yan.chu/grpc_cpp/grpc_cpp_python/cpp_server/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
