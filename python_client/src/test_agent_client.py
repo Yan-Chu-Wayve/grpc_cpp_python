@@ -112,7 +112,7 @@ class TestAgentClient:
             request = pb2.ServiceTypeRequest(service_type=service_type)
             self.stub.StartService(request)
             service_name = pb2.ServiceType.Name(service_type)
-            print(f"✅ Service {service_name} started")
+            print(f"Service {service_name} started")
             return True
         except grpc.RpcError as e:
             print(f"RPC failed: {e.code()} - {e.details()}")
@@ -128,7 +128,7 @@ class TestAgentClient:
             request = pb2.ServiceTypeRequest(service_type=service_type)
             self.stub.StopService(request)
             service_name = pb2.ServiceType.Name(service_type)
-            print(f"🛑 Service {service_name} stopped")
+            print(f"Service {service_name} stopped")
             return True
         except grpc.RpcError as e:
             print(f"RPC failed: {e.code()} - {e.details()}")
@@ -138,7 +138,7 @@ class TestAgentClient:
         """Engage the WayveDriver."""
         try:
             self.stub.EngageWayveDriver(pb2.Empty())
-            print("🚗 WayveDriver engaged")
+            print("WayveDriver engaged")
             return True
         except grpc.RpcError as e:
             print(f"RPC failed: {e.code()} - {e.details()}")
@@ -148,7 +148,7 @@ class TestAgentClient:
         """Disengage the WayveDriver."""
         try:
             self.stub.DisengageWayveDriver(pb2.Empty())
-            print("🛑 WayveDriver disengaged")
+            print("WayveDriver disengaged")
             return True
         except grpc.RpcError as e:
             print(f"RPC failed: {e.code()} - {e.details()}")
@@ -163,7 +163,7 @@ class TestAgentClient:
             log_queue: Optional queue to put log events for concurrent processing
         """
         try:
-            print(f"📡 Streaming trace events (max: {max_events}, timeout: {timeout}s)...")
+            print(f"Streaming trace events (max: {max_events}, timeout: {timeout}s)...")
             
             event_count = 0
             start_time = time.time()
@@ -208,7 +208,7 @@ class TestAgentClient:
                     print(f"    Message: {message}")
                     print()
             
-            print(f"✅ Received {event_count} trace events")
+            print(f"Received {event_count} trace events")
             return event_count
             
         except grpc.RpcError as e:
@@ -217,7 +217,7 @@ class TestAgentClient:
 
     def get_all_server_info(self):
         """Get all server information in one call."""
-        print("📋 Fetching server information...")
+        print("Fetching server information...")
         info = {}
         
         info['mock_mode'] = self.is_wayve_driver_mock()
@@ -234,7 +234,7 @@ class TestAgentClient:
             stream_duration: How long to stream logs (seconds)
             poll_interval: How often to poll server info (seconds)
         """
-        print("🔄 Starting concurrent log streaming and server info polling...")
+        print("Starting concurrent log streaming and server info polling...")
         print("=" * 60)
         
         # Queue for log events
@@ -246,7 +246,7 @@ class TestAgentClient:
             while not stop_streaming.is_set() or not log_queue.empty():
                 try:
                     log_entry = log_queue.get(timeout=1)
-                    print(f"📝 [LOG] Event {log_entry['event_number']}: "
+                    print(f"[LOG] Event {log_entry['event_number']}: "
                           f"{log_entry['severity']} - {log_entry['message']}")
                 except queue.Empty:
                     continue
@@ -256,7 +256,7 @@ class TestAgentClient:
             poll_count = 0
             while not stop_streaming.is_set():
                 poll_count += 1
-                print(f"\n🔍 [INFO POLL #{poll_count}] Checking server status...")
+                print(f"\n[INFO POLL #{poll_count}] Checking server status...")
                 
                 # Get server info concurrently
                 with ThreadPoolExecutor(max_workers=4) as executor:
@@ -272,9 +272,9 @@ class TestAgentClient:
                         try:
                             result = future.result(timeout=2)
                         except Exception as e:
-                            print(f"❌ Error getting {name}: {e}")
+                            print(f"Error getting {name}: {e}")
                 
-                print(f"✅ [INFO POLL #{poll_count}] Complete\n")
+                print(f"[INFO POLL #{poll_count}] Complete\n")
                 
                 # Wait for next poll or stop signal
                 if stop_streaming.wait(poll_interval):
@@ -291,7 +291,7 @@ class TestAgentClient:
                     log_queue=log_queue
                 )
             except Exception as e:
-                print(f"❌ Log streaming error: {e}")
+                print(f"Log streaming error: {e}")
             finally:
                 stop_streaming.set()
         
@@ -308,10 +308,10 @@ class TestAgentClient:
         
         # Wait for streaming to complete
         try:
-            print(f"⏱️  Running for {stream_duration} seconds...")
+            print(f"Running for {stream_duration} seconds...")
             time.sleep(stream_duration)
         except KeyboardInterrupt:
-            print("\n⏹️  Interrupted by user")
+            print("\nInterrupted by user")
         finally:
             stop_streaming.set()
             
@@ -319,13 +319,13 @@ class TestAgentClient:
             for thread in threads:
                 thread.join(timeout=2)
         
-        print("\n✅ Concurrent streaming and polling completed!")
+        print("\nConcurrent streaming and polling completed!")
 
 
 def run_demo_suite(client):
     """Run a comprehensive demo of all client features."""
     
-    print("🚀 Starting TestAgent Client Demo")
+    print("Starting TestAgent Client Demo")
     print("=" * 50)
     
     # Test basic information
@@ -374,7 +374,7 @@ def run_demo_suite(client):
     print("\n5. Testing concurrent log streaming and server info polling...")
     client.stream_logs_while_polling_server_info(stream_duration=10, poll_interval=2)
     
-    print("\n✅ Demo completed successfully!")
+    print("\nDemo completed successfully!")
 
 
 def main():
@@ -396,7 +396,7 @@ def main():
     client = TestAgentClient(host=args.host, port=args.port)
     
     try:
-        print(f"🔗 Connecting to TestAgent server at {client.address}")
+        print(f"Connecting to TestAgent server at {client.address}")
         
         if args.demo:
             run_demo_suite(client)
@@ -412,12 +412,12 @@ def main():
             client.get_integration_status()
             
     except KeyboardInterrupt:
-        print("\n⏹️  Interrupted by user")
+        print("\nInterrupted by user")
     except Exception as e:
-        print(f"❌ Unexpected error: {e}")
+        print(f"Unexpected error: {e}")
     finally:
         client.close()
-        print("👋 Client closed")
+        print("Client closed")
 
 
 if __name__ == "__main__":
