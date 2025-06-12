@@ -42,7 +42,7 @@ def generate_grpc_code():
     
     try:
         result = subprocess.run(cmd, check=True, capture_output=True, text=True)
-        print("✅ Successfully generated Python gRPC code")
+        print("Successfully generated Python gRPC code")
         print(f"Output files created in: {output_dir}")
         
         # List generated files
@@ -52,7 +52,7 @@ def generate_grpc_code():
         return True
         
     except subprocess.CalledProcessError as e:
-        print(f"❌ Error generating gRPC code: {e}")
+        print(f"Error generating gRPC code: {e}")
         print(f"stdout: {e.stdout}")
         print(f"stderr: {e.stderr}")
         return False
