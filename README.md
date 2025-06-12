@@ -17,16 +17,19 @@ grpc_cpp_python/
 │   └── test_agent_service.proto    # Protocol buffer definitions
 ├── cpp_server/
 │   ├── src/
-│   │   ├── test_agent_service_impl.h    # Service implementation header
-│   │   ├── test_agent_service_impl.cpp  # Service implementation
-│   │   └── server_main.cpp              # Server entry point
-│   └── CMakeLists.txt                   # C++ build configuration
+│   │   ├── test_agent_service_impl.h        # Service implementation header
+│   │   ├── test_agent_service_impl.cpp      # Service implementation
+│   │   └── server_main.cpp                  # Server entry point
+│   └── CMakeLists.txt                       # C++ build configuration
 ├── python_client/
 │   ├── src/
-│   │   └── test_agent_client.py         # Python client implementation
-│   ├── generate_protos.py               # Proto generation script
-│   └── requirements.txt                 # Python dependencies
-└── README.md                            # This file
+│   │   └── test_agent_client.py             # Python client implementation
+│   ├── generated/
+│   │   └── test_agent_service_pb2.py        # Generated from .proto - Message classes
+│   │   └── test_agent_service_pb2_grpc.py   # Generated from .proto - gRPC service classes
+│   ├── generate_protos.py                   # Proto generation script
+│   └── requirements.txt                     # Python dependencies
+└── README.md                                # This file
 ```
 
 ## 🔧 Prerequisites
