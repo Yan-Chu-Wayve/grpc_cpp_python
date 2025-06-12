@@ -1,10 +1,10 @@
 # gRPC C++ Python Project
 
-A comprehensive gRPC-based TestAgent service with a C++ server implementation and Python client, derived from the Wayve Driver SDK.
+A dummy gRPC-based TestAgent service with a C++ server implementation and Python client, derived from the Wayve Driver SDK.
 
 ## 🚀 Project Overview
 
-This project demonstrates a complete gRPC service architecture featuring:
+This project demonstrates a dummay gRPC service architecture featuring:
 
 - **C++ Server**: High-performance server implementation with thread-safe operations
 - **Python Client**: Comprehensive client with full API coverage and demo functionality
@@ -187,19 +187,6 @@ The C++ server implementation includes:
 - **Connection Handling**: Automatic retry and timeout handling
 - **Graceful Degradation**: Continues operation on non-critical errors
 
-## 🛠️ Development
-
-### Adding New Services
-1. Update the `.proto` file with new RPC methods
-2. Regenerate code using `generate_protos.py`
-3. Implement methods in C++ server
-4. Add client methods in Python
-
-### Debugging
-- Enable gRPC logging: `export GRPC_VERBOSITY=DEBUG`
-- Use server reflection for introspection
-- Monitor with standard debugging tools
-
 ## 📚 Dependencies
 
 ### C++ Dependencies
@@ -211,14 +198,6 @@ The C++ server implementation includes:
 - grpcio (1.60.0)
 - grpcio-tools (1.60.0)
 - protobuf (4.25.1)
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
 
 ## 📄 License
 
@@ -242,5 +221,3 @@ This project is part of the Wayve Driver SDK and follows the same licensing term
 **Build Errors**
 - Ensure C++17 compiler support
 - Check all dependencies are installed
-
-For more help, check the individual component READMEs or open an issue. 
